@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # Local apps
     'snippets.apps.SnippetsConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
