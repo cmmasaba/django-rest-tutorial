@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14.0-alpine
+    ports:
+      - "5432"
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+    - POSTGRES_DB=djangorest
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+
+  web:
+    build: .
+    command: python /tutorial/manage.py runserver 0.0.0.0:8000
+    restart: always
+    volumes:
+      - .:/tutorial
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+  
+volumes:
+  postgres_data: 
